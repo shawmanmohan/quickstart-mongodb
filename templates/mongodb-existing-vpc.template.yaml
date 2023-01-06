@@ -84,8 +84,11 @@ Parameters:
   MongoDBVersion:
     Description: MongoDB version
     Type: String
-    Default: '4.2'
+    Default: '4.4'
     AllowedValues:
+      - '6.0'
+      - '5.0'
+      - '4.4'
       - '4.2'
       - '4.0'
       - '3.6'
@@ -327,7 +330,7 @@ Resources:
                 Action:
                   - s3:GetObject
                 Resource: !Sub
-                  - arn:${AWS::Partition}:s3:::${S3Bucket}/${QSS3KeyPrefix}*
+                  - arn:${AWS::Partition}:s3:::${S3Bucket}/${QSS3KeyPrefix}/*
                   - S3Bucket: !If
                       - UsingDefaultBucket
                       - !Sub '${QSS3BucketName}-${AWS::Region}'
@@ -359,7 +362,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/mongodb-node.template.yaml
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/templates/mongodb-node.template.yaml
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'
@@ -406,7 +409,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/mongodb-node.template.yaml
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/templates/mongodb-node.template.yaml
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'
@@ -454,7 +457,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/mongodb-node.template.yaml
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/templates/mongodb-node.template.yaml
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'

@@ -366,10 +366,13 @@
             ]
         },
         "MongoDBVersion": {
-            "Default": "4.2",
+            "Default": "4.4",
             "Type": "String",
             "Description": "MongoDB version",
             "AllowedValues": [
+                "6.0",
+                "5.0",
+                "4.4",
                 "4.2",
                 "4.0",
                 "3.6",
@@ -453,7 +456,7 @@
             "Properties": {
                 "TemplateURL": {
                     "Fn::Sub": [
-                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml",
+                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml",
                         {
                             "S3Region": {
                                 "Fn::If": ["UsingDefaultBucket",  { "Ref" : "AWS::Region" }, {"Ref": "QSS3BucketRegion"}]
@@ -505,7 +508,7 @@
             "Properties": {
                 "TemplateURL": {
                     "Fn::Sub": [
-                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template",
+                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/submodules/quickstart-linux-bastion/templates/linux-bastion.template",
                         {
                             "S3Region": {
                                 "Fn::If": ["UsingDefaultBucket",  { "Ref": "AWS::Region" }, {"Ref": "QSS3BucketRegion"}]
@@ -546,7 +549,7 @@
                         "Ref": "QSS3BucketName"
                     },
                     "QSS3KeyPrefix": {
-                        "Fn::Sub": "${QSS3KeyPrefix}submodules/quickstart-linux-bastion/"
+                        "Fn::Sub": "${QSS3KeyPrefix}/submodules/quickstart-linux-bastion/"
                     },
                     "QSS3BucketRegion": {
                         "Ref": "QSS3BucketRegion"
@@ -568,7 +571,7 @@
             "Properties": {
                 "TemplateURL": {
                     "Fn::Sub": [
-                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/mongodb.template",
+                        "https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/templates/mongodb.template",
                         {
                             "S3Region": {
                                 "Fn::If": ["UsingDefaultBucket",  { "Ref": "AWS::Region" }, {"Ref": "QSS3BucketRegion"}]

@@ -182,7 +182,7 @@ EOF
 
 echo "net:" > mongod.conf
 echo "  port:" >> mongod.conf
-if [ "$version" == "3.6" ] || [ "$version" == "4.0" ] || [ "$version" == "4.2" ]; then
+if [ "$version" == "3.6" ] || [ "$version" == "4.0" ] || [ "$version" == "4.2" ] || [ "$version" == "4.4" ]; then
     echo "  bindIpAll: true" >> mongod.conf
 fi
 echo "" >> mongod.conf

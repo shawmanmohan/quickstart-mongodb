@@ -303,10 +303,13 @@ Parameters:
       - gp2
       - io1
   MongoDBVersion:
-    Default: '4.2'
+    Default: '4.4'
     Type: String
     Description: MongoDB version
     AllowedValues:
+      - '6.0'
+      - '5.0'
+      - '4.4'
       - '4.2'
       - '4.0'
       - '3.6'
@@ -362,7 +365,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'
@@ -388,7 +391,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/submodules/quickstart-linux-bastion/templates/linux-bastion.template
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'
@@ -406,7 +409,7 @@ Resources:
         PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
         PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
         QSS3BucketName: !Ref 'QSS3BucketName'
-        QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-linux-bastion/'
+        QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}/submodules/quickstart-linux-bastion/'
         QSS3BucketRegion: !Ref 'QSS3BucketRegion'
         RemoteAccessCIDR: !Ref 'RemoteAccessCIDR'
         VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
@@ -414,7 +417,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/mongodb-existing-vpc.template.yaml
+        - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}/templates/mongodb-existing-vpc.template.yaml
         - S3Region: !If
             - UsingDefaultBucket
             - !Ref 'AWS::Region'
